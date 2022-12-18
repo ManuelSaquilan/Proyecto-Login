@@ -7,27 +7,33 @@ import base64
 ventana= tk.Tk()
 ventana.title("Base de Datos")
 ventana.geometry("400x400")
+ventana.configure(bg="#49A")
 
-lMiEtiqueta=tk.Label(text="Manuel Saquilán",font=("Verdana",12))
+lMiEtiqueta=tk.Label(text="Manuel Saquilán",font=("Verdana",12,"bold"))
 lMiEtiqueta.place(x=250,y=370)
+lMiEtiqueta.configure(bg="#49A")
 
 lUsuario=tk.Label(text="Ingrese su nombre de usuario")
 lUsuario.place(x=10,y=10)
+lUsuario.configure(bg="#49A")
 eUsuario=tk.Entry()
 eUsuario.place(x=210,y=10)
 
 lEmail=tk.Label(text="Ingrese su mail")
 lEmail.place(x=10,y=50)
+lEmail.configure(bg="#49A")
 eEmail=tk.Entry()
 eEmail.place(x=210,y=50)
 
 lNacimiento=tk.Label(text="Ingrese su fecha de nacimiento")
 lNacimiento.place(x=10,y=90)
+lNacimiento.configure(bg="#49A")
 eNacimiento=tk.Entry()
 eNacimiento.place(x=210,y=90)
 
 lPass=tk.Label(text="Ingrese su contraseña")
 lPass.place(x=10,y=130)
+lPass.configure(bg="#49A")
 ePass=tk.Entry(show="*")
 ePass.place(x=210,y=130)
 
@@ -66,7 +72,7 @@ def limpiarFormulario():
     eEmail.delete(0,tk.END)
     eNacimiento.delete(0,tk.END)
     ePass.delete(0,tk.END)
-tecla=tk.Button(text="REGISTRO",width=10,height=2,bg="green",command=guardar)
-tecla.place(x=170,y=170)
+botonGuardar=tk.Button(text="REGISTRO",width=10,height=2,bg="pale green",command=guardar)
+botonGuardar.place(x=170,y=210)
 
 tk.mainloop()
