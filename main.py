@@ -9,8 +9,12 @@ ventana.title("Base de Datos")
 ventana.geometry("400x400")
 ventana.configure(bg="#49A")
 
+img=tk.PhotoImage(file="python.png")
+lImagen=tk.Label(ventana,image=img)
+lImagen.place(x=30,y=260)
+
 lMiEtiqueta=tk.Label(text="Manuel Saquilán",font=("Verdana",12,"bold"))
-lMiEtiqueta.place(x=250,y=370)
+lMiEtiqueta.place(x=240,y=350)
 lMiEtiqueta.configure(bg="#49A")
 
 lUsuario=tk.Label(text="Ingrese su nombre de usuario")
@@ -37,42 +41,48 @@ lPass.configure(bg="#49A")
 ePass=tk.Entry(show="*")
 ePass.place(x=210,y=130)
 
-def comprobarPassword():
-  password=ePass.get()
-  password=password.encode('ascii')
-  password=base64.b64encode(password)
-  if len(password)<8:
-        messagebox.showinfo("Mensaje", "La contraseña debe tener al menos 8 caracteres")
-        limpiarFormulario()
+# def comprobarPassword():
+#  contraseña=ePass.get()
+#  contraseña=contraseña.encode('ascii')
+#  contraseña=base64.b64encode(contraseña)
+#  if len(contraseña)<8:
+#        messagebox.showinfo("Mensaje", "La contraseña debe tener al menos 8 caracteres")
+#        limpiarFormulario()
 
 def guardar():
     username=eUsuario.get()
     email=eEmail.get()
     nacimiento=eNacimiento.get()
     password=ePass.get()
-    if utils.nameValidator(username):
-        if utils.dateValidator(nacimiento):
-            if utils.emailValidator(email):
-                try:
-                    comprobarPassword()
-                    BaseDatos.savedata(username,email,nacimiento,password)
-                    messagebox.showinfo("Mensaje", "Usuario registrado exitosamente")
-                    limpiarFormulario()
-                except:
-                    messagebox.showinfo("Mensaje","El usuario no pudo ser registrado")
+    password=password.encode('ascii')
+    password=base64.b64encode(password)
+    if len(password)>8:
+        if utils.nameValidator(username):
+            if utils.dateValidator(nacimiento):
+                if utils.emailValidator(email):
+                    try:
+                        BaseDatos.savedata(username,email,nacimiento,password)
+                        messagebox.showinfo("Mensaje", "Usuario registrado exitosamente")
+                        limpiarFormulario()
+                    except:
+                        messagebox.showinfo("Mensaje","El usuario no pudo ser registrado")
+                else:
+                    messagebox.showinfo("Mensaje", "Correo eléctronico con formato incorrecto")
             else:
-                messagebox.showinfo("Mensaje", "Correo eléctronico con formato incorrecto")
+                messagebox.showinfo("Mensaje", "Fecha con formato incorrecto")
         else:
-            messagebox.showinfo("Mensaje", "Fecha con formato incorrecto")
+            messagebox.showinfo("Mensaje","nombre con Formato Incorrecto")
     else:
-        messagebox.showinfo("Mensaje","nombre con Formato Incorrecto")
-        limpiarFormulario()
+        messagebox.showinfo("Mensaje", "La contraseña debe tener al menos 8 caracteres")
+    limpiarFormulario()
+
 def limpiarFormulario():
     eUsuario.delete(0,tk.END)
     eEmail.delete(0,tk.END)
     eNacimiento.delete(0,tk.END)
     ePass.delete(0,tk.END)
+
 botonGuardar=tk.Button(text="REGISTRO",width=10,height=2,bg="pale green",command=guardar)
-botonGuardar.place(x=170,y=210)
+botonGuardar.place(x=170,y=200)
 
 tk.mainloop()
