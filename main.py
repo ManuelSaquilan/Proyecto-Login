@@ -41,14 +41,6 @@ lPass.configure(bg="#49A")
 ePass=tk.Entry(show="*")
 ePass.place(x=210,y=130)
 
-# def comprobarPassword():
-#  contraseña=ePass.get()
-#  contraseña=contraseña.encode('ascii')
-#  contraseña=base64.b64encode(contraseña)
-#  if len(contraseña)<8:
-#        messagebox.showinfo("Mensaje", "La contraseña debe tener al menos 8 caracteres")
-#        limpiarFormulario()
-
 def guardar():
     username=eUsuario.get()
     email=eEmail.get()
